@@ -141,16 +141,21 @@
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="Alice.cpp" />
+    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Hero.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Position.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="Alice.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="ConstantsNamesAndDescriptions.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="Position.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,9 +1,12 @@
 #include "Weapon.h"
-
+#include "ConstantsNamesAndDescriptions.h"
 Weapon::Weapon(int damage, string name, string description)
-	:damage(damage), name(name), descripition(descripition)
+	:damage(damage), name(name), descripition(description)
 { }
-
+Weapon::~Weapon()
+{
+	delete[] ability; 
+}
 int Weapon::getDamage()
 {
 	return damage;
@@ -21,60 +24,80 @@ void Weapon::setDamage(int value)
 	damage = value;
 }
 
+
 //Teleport potion
-const int teleportPotionDamage = 0;
-const string name = "Teleport potion"; 
-const string teleportPotionDescription = "Moves Alice 3 fields forward, or to the first free field. If the exit portal is less than 3 fields away - stay at current position";
-TeleportPotion::TeleportPotion()
-	:Weapon(teleportPotionDamage, name, teleportPotionDescription)
-{ }
-const Teleport* TeleportPotion::ability = new Teleport();
+TeleportPotion::TeleportPotion(Hero* owner, Position& toPort)
+	:Weapon(teleportPotionDamage, name, teleportPotionDescription), owner(owner), toPort(toPort)
+{
+	ability = new Teleport(toPort, owner);
+}
+Weapon* TeleportPotion::clone()
+{
+	TeleportPotion* copy = new TeleportPotion (*this);
+	return copy;
+}
+
 //Potion "Drink me" 
-const int potionDrinkMeDamage = 10;
-const string potionDrinkMeName = "Potion - Drink me ";
-const string potionDrinkMeDescription = "Decreases Alice's damage";
-PotionDrinkMe::PotionDrinkMe()
-	:Weapon(teleportPotionDamage, potionDrinkMeName, teleportPotionDescription)
-{}
-const Action* PotionDrinkMe::ability = nullptr;
+PotionDrinkMe::PotionDrinkMe(Hero* owner)
+	:Weapon(potionDrinkMeDamage, potionDrinkMeName, potionDrinkMeDescription), owner(owner)
+{
+	ability = new SetDamage(owner, 10);
+}
+Weapon* PotionDrinkMe::clone()
+{
+	PotionDrinkMe* copy = new PotionDrinkMe(*this);
+	return copy;
+}
 
 //Cookie "Eat Me"
-const int cookieEatMeDamage = 40;
-const string cookieEatMeName = "Cookie - eat me ";
-const string cookieEatMeDescription = "Increases Alice's damage";
-CookieEatMe::CookieEatMe()
-	:Weapon(cookieEatMeDamage, cookieEatMeName, cookieEatMeDescription)
-{}
-const Action* PotionDrinkMe::ability = nullptr;
+CookieEatMe::CookieEatMe(Hero* owner)
+	:Weapon(cookieEatMeDamage, cookieEatMeName, cookieEatMeDescription), owner(owner)
+{
+	ability = new SetDamage(owner, 40);
+}
+Weapon* CookieEatMe::clone()
+{
+	CookieEatMe* copy = new CookieEatMe(*this);
+	return copy;
+}
 
 //Magic fan
-const int magicFanDamage = 35;
-const string magicFanName = "Magic Fan"; 
-const string MagicFanDescription = "Decreases enemy and gives Alice advantage"; 
 MagicFan::MagicFan()
 	:Weapon(magicFanDamage, magicFanName, MagicFanDescription)
-{}
-const Action* CookieEatMe::ability = nullptr;
+{
+	ability = nullptr;
+}
+Weapon* MagicFan::clone()
+{
+	MagicFan* copy = new MagicFan(*this);
+	return copy;
+}
+
 
 //Inbisible hat
-const int invisibleHatDamage = 0; 
-const string invisibleHatName = "Invisible Hat";
-const string invisibleHatDescription = "Makes Alice invisible - she moves 2 fields forward, automatically defeating the rival."; 
 InvisibleHat::InvisibleHat()
 	:Weapon(invisibleHatDamage, invisibleHatName, invisibleHatDescription)
-{ }
-const SkipNextMonster* InvisibleHat::ability = new SkipNextMonster();
+{ 
+	ability = new SkipNextMonster();
+}
+Weapon* InvisibleHat::clone()
+{
+	InvisibleHat* copy = new InvisibleHat(*this);
+	return copy;
+}
+
 
 //Take a rose 
-const int defaultValue = 0;
-const string takeARoseName = "Toss a rose";
-const string takeARoseDescription = "Alice tosses a rose. Red - 40 damage, White - 10 damage";
-Rose::Rose()
-	:Weapon(defaultValue, takeARoseName, takeARoseDescription)
+Rose::Rose(Hero* owner)
+	:Weapon(defaultValue, takeARoseName, takeARoseDescription), owner(owner)
 {
-	TakeARose* a = new TakeARose(); 
-	damage = a->getDamage();
-const TakeARose* Rose::ability = a; //in order to use takearose function 
+	ability = new TakeARose(owner);
 }
+Weapon* Rose::clone()
+{
+	Rose* copy = new Rose(*this);
+	return copy;
+}
+
 
 

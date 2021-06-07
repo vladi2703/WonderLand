@@ -2,70 +2,77 @@
 #include <cstdlib>
 #include <ctime>
 
-void EmptySpace::execute()
+void EmptySpace::execute() const
 {
 	//do nothing
 }
 
-void Move::execute()
+void Move::execute() const
 {
 
 }
 //Take a rose
-TakeARose::TakeARose()
+TakeARose::TakeARose(Hero* champion)
+	:champion(champion)
 { }
-void TakeARose::execute()
-{ }
-int TakeARose::getDamage()
-{
+void TakeARose::execute() const
+{ 
 	srand(time(NULL));
 	bool roseIsRed = (rand() % 2 == 1);
 	if (roseIsRed)
 	{
-		return 30;
+	champion->setDamage(30); 
 	}
 	else
 	{
-		return 10;
+	champion->setDamage(10); 
 	}
-
 }
 
 
-void SkipNextMonster::execute()
+void SkipNextMonster::execute() const
 {
 	//move 2 positions forward outside monste
 }
 
 
-AddDamage::AddDamage(Hero* enemy)
-	:enemy(enemy)
+SetDamage::SetDamage(Hero* enemy, int damageToSet)
+	:champion(enemy), damageToSet(damageToSet)
 { }
 
-void AddDamage::execute()
+void SetDamage::execute() const
 {
-	enemy->takeDamage(40);
+	champion->setDamage(damageToSet);
 }
 
-void Teleport::execute()
+Teleport::Teleport(Position& toPort, Hero* champion)
+	:toPort(toPort), champion(champion)
+{  }
+
+void Teleport::execute() const
 {
+	champion->setPosition(toPort);
 }
 
-Attack::Attack(Hero* enemy, const Hero* attacker )
+Attack::Attack(Hero* enemy, const Hero* attacker, int damage = 0)
 {
-	enemy->takeDamage(attacker->getDamage());
+	if (damage == 0)
+	{
+		damage = attacker->getDamage();
+	}
+	enemy->takeDamage(damage);
 }
 
-void Attack::execute()
+void Attack::execute() const
 {
-	
-}
 
-CollectWeapon::CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer)
-	:weaponToCollect(weaponToCollect), currentPlayer(currentPlayer)
-{ }
-
-void CollectWeapon::execute()
-{
-	currentPlayer.addWeapon(weaponToCollect);
 }
+//
+//CollectWeapon::CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer)
+//	:weaponToCollect(weaponToCollect), currentPlayer(currentPlayer)
+//{ }
+//
+//void CollectWeapon::execute() const
+//{
+//	currentPlayer.addWeapon(weaponToCollect);
+//}

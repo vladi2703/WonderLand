@@ -5,55 +5,77 @@
 using std::string;
 class Weapon
 {
-private:
+public:
 protected: 
 
 	string descripition;
 	string name;
 	int damage; 
-	static const Action* ability;
 	
 	Weapon(int damage, string name, string descripition); 
 
+	void setDamage(int value); 
+	
+public:
+	const Action* ability;
+	virtual ~Weapon(); 
 	int getDamage(); 
 	string getDescription();	
 	string getName();
-
-	void setDamage(int value); 
+	
 
 };
 
-class TeleportPotion : private Weapon
+class TeleportPotion : public Weapon 
 {
+private:
+	Hero* owner; //owner of the potion
+	Position toPort; //position we want to teleport the "owner" 
 public: 
-	TeleportPotion();	
+	TeleportPotion(Hero* owner, Position& toPort);
+	Weapon* clone();
 };
  
-class PotionDrinkMe :private Weapon
+class PotionDrinkMe :public Weapon
 {
+private:
+	Hero* owner; //owner of the potion
 public:
-	PotionDrinkMe();
+	PotionDrinkMe(Hero* owner);
+	Weapon* clone();
+
 };
-class CookieEatMe :private Weapon
+class CookieEatMe :public Weapon
 {
+private:
+	Hero* owner; //owner of the cookie
 public:
-	CookieEatMe();
+	CookieEatMe(Hero* owner);
+	Weapon* clone();
+
 };
 
-class MagicFan : private Weapon
+class MagicFan : public Weapon
 {
 public:
 	MagicFan();
+	Weapon* clone();
 };
-class InvisibleHat : private Weapon
+
+class InvisibleHat : public Weapon
 {
 public:
 	InvisibleHat();
+	Weapon* clone();
 };
-class Rose : private Weapon
+
+class Rose : public Weapon
 {
+private:
+	Hero* owner;
 public:
-	Rose();
+	Rose(Hero* owner);
+	Weapon* clone();
 };
 
 

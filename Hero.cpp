@@ -1,7 +1,7 @@
 #include "Hero.h"
 
-Hero::Hero(int hp, int damage)
-    :hitpoints(hp), damage(damage)
+Hero::Hero(int hp, int damage, Position& pos)
+    :hitpoints(hp), damage(damage), pos(pos)
 { }
 
 void Hero::attack(Hero& enemy)
@@ -14,11 +14,6 @@ void Hero::takeDamage(int damage)
     hitpoints -= damage;
 }
 
-void Hero::writeToFile(string filename) const
-{
-
-}
-
 int Hero::getDamage() const
 {
     return damage;
@@ -29,7 +24,22 @@ int Hero::getHp() const
     return hitpoints;
 }
 
+Position Hero::getPos() const
+{
+    return pos;
+}
+
 void Hero::setDamage(const int value)  
 { 
-    this->damage = damage;
+    this->damage = value;
+}
+
+void Hero::setPosition(Position& pos)
+{ 
+    this->pos = pos;
+}
+
+void Hero::resetHP(int maxHP)
+{
+    hitpoints = maxHP;
 }

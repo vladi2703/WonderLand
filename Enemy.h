@@ -4,6 +4,7 @@
 class Enemy:public Hero
 {
 private:
+	
 
 };
 

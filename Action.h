@@ -1,63 +1,68 @@
 #pragma once
 #include "Hero.h"
-#include "Alice.h"
-#include "Weapon.h"
+//#include "Weapon.h"
 class Action
 {
 
 public: 
-	virtual void execute() = 0;
+	virtual void execute() const = 0 ;
 };
 
 class EmptySpace : public Action
 {
-	void execute() override; 
+	void execute() const override;
 };
 class Move : public Action //TODO
 {
-	void execute() override;
+	void execute() const override;
 };
 class TakeARose : public Action
 {
 private:
+	Hero* champion;
 public:
-	TakeARose();
-	int getDamage(); 
-	void execute() override;
+	TakeARose(Hero* champion);
+	void execute() const override;
 };
 
 class SkipNextMonster : public Action
 {
-	void execute() override;
+	void execute() const override;
 }; // TODO
 
-class AddDamage : public Action
+class SetDamage : public Action
 {
 private:
-	Hero* enemy;
+	Hero* champion;
+	int damageToSet; 
 public:
-	AddDamage(Hero* enemy); 
-	void execute() override;
+	SetDamage(Hero* champion, int damageToAdd);
+	void execute() const override;
 };
 class Teleport : public Action
 {
-	void execute() override;
+private:
+	Position& toPort; 
+	Hero* champion; 
+public:
+	Teleport(Position& toPort, Hero* champion);
+	void execute() const override;
 }; //TODO
 
 class Attack : public Action
 {
-	Hero* enemy; 
+	Hero* enemy;
 public:
-	Attack(Hero* enemy, const Hero* attacker);
-	void execute() override;
-}; 
-
-class CollectWeapon : public Action
-{
-private:
-	Weapon* weaponToCollect; 
-	Alice currentPlayer; 
-public:
-	CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer);
-	void execute() override;
+	Attack(Hero* enemy, const Hero* attacker, int damage);
+	void execute() const override;
 };
+
+//class CollectWeapon : public Action
+//{
+//private:
+//	Weapon* weaponToCollect;
+//	Alice currentPlayer;
+//public:
+//	CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer);
+//	void execute() const override;
+//};

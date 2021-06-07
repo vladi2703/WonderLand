@@ -1,0 +1,2 @@
+﻿Board.obj : error LNK2019: unresolved external symbol "public: __thiscall Board::~Board(void)" (??1Board@@QAE@XZ) referenced in function "private: void __thiscall Board::copyFrom(class Board)" (?copyFrom@Board@@AAEXV1@@Z)
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\Debug\WonderLand.exe : fatal error LNK1120: 1 unresolved externals
