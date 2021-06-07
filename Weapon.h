@@ -11,18 +11,22 @@ protected:
 	string descripition;
 	string name;
 	int damage; 
-	
-	Weapon(int damage, string name, string descripition); 
+	char sign; 
+	Position startPos; 
+	Weapon(int damage, string name, string descripition, char sign, Position startPos); 
 
 	void setDamage(int value); 
 	
 public:
 	const Action* ability;
 	virtual ~Weapon(); 
-	int getDamage(); 
-	string getDescription();	
-	string getName();
-	
+
+	int getDamage() const;  
+	string getDescription() const;	
+	string getName() const;
+	char getSign() const;
+	Position getPos() const; 
+
 	virtual Weapon* clone() const = 0; 
 };
 
@@ -32,7 +36,7 @@ private:
 	Hero* owner; //owner of the potion
 	Position toPort; //position we want to teleport the "owner" 
 public: 
-	TeleportPotion(Hero* owner, Position& toPort);
+	TeleportPotion(Position startPos, Hero* owner, Position& toPort);
 	Weapon* clone() const override;
 };
  
@@ -41,7 +45,7 @@ class PotionDrinkMe :public Weapon
 private:
 	Hero* owner; //owner of the potion
 public:
-	PotionDrinkMe(Hero* owner);
+	PotionDrinkMe(Position startPos, Hero* owner);
 	Weapon* clone() const override;
 
 };
@@ -50,7 +54,7 @@ class CookieEatMe :public Weapon
 private:
 	Hero* owner; //owner of the cookie
 public:
-	CookieEatMe(Hero* owner);
+	CookieEatMe(Position startPos, Hero* owner);
 	Weapon* clone() const override;
 
 };
@@ -58,14 +62,14 @@ public:
 class MagicFan : public Weapon
 {
 public:
-	MagicFan();
+	MagicFan(Position startPos);
 	Weapon* clone() const override;
 };
 
 class InvisibleHat : public Weapon
 {
 public:
-	InvisibleHat();
+	InvisibleHat(Position startPos);
 	Weapon* clone() const override;
 };
 
@@ -74,7 +78,7 @@ class Rose : public Weapon
 private:
 	Hero* owner;
 public:
-	Rose(Hero* owner);
+	Rose(Position startPos, Hero* owner);
 	Weapon* clone() const override;
 };
 

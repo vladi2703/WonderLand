@@ -5,7 +5,7 @@ int main()
 {
 	Position pos(0, 0); 
 	Alice* a = new Alice(pos);
-	Rose* w = new Rose(a); 
+	Rose* w = new Rose(pos, a); 
 	a->addWeapon(w);
 	a->showInventory(); 
 	w->ability->execute();

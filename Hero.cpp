@@ -1,7 +1,7 @@
 #include "Hero.h"
 
-Hero::Hero(int hp, int damage, Position& pos)
-    :hitpoints(hp), damage(damage), pos(pos)
+Hero::Hero(int hp, int damage, Position& pos, char sign)
+    :hitpoints(hp), damage(damage), pos(pos), sign(sign)
 { }
 
 void Hero::attack(Hero& enemy)
@@ -27,6 +27,11 @@ int Hero::getHp() const
 Position Hero::getPos() const
 {
     return pos;
+}
+
+char Hero::getSign() const
+{
+    return sign;
 }
 
 void Hero::setDamage(const int value)  

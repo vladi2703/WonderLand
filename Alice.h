@@ -14,7 +14,7 @@ private:
 	
 	
 public: 
-	Alice(Position& startingPos);
+	Alice(Position& startingPos, char sign = 'A');
 	void pickWeapon(int index);
 	void showInventory(); 
 	void addWeapon(Weapon* newWeapon); 

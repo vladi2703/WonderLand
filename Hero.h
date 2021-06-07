@@ -10,8 +10,8 @@ protected:
 	int hitpoints; 
 	int damage; 
 	Position pos; 
-	Hero(int hp, int damage, Position& pos);
-	
+	Hero(int hp, int damage, Position& pos, char sign);
+	char sign;
 public:
 
 	void attack(Hero& enemy); 
@@ -21,6 +21,7 @@ public:
 	int getDamage() const;
 	int getHp() const; 
 	Position getPos() const;
+	char getSign() const;
 
 	void setDamage(const int value); 
 	void setPosition(Position& pos); 

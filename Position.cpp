@@ -3,7 +3,6 @@
 Position::Position(const int row, const int column, bool hasEnemy, bool hasWeapon, bool hasWall)
     :row(row), column(column), hasEnemy(hasEnemy),hasWeapon(hasWeapon), hasWall(hasWall)
 {
-
 }
 
 bool Position::operator==(const Position rhs) const

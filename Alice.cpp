@@ -3,8 +3,8 @@ const int ALICE_BASE_DAMAGE = 15;
 const int ALICE_BASE_HEALTH = 100;
 
 
-Alice::Alice(Position& startingPos)
-	:Hero(ALICE_BASE_HEALTH, ALICE_BASE_DAMAGE, startingPos), currentWeapon(nullptr)
+Alice::Alice(Position& startingPos, char sign)
+	:Hero(ALICE_BASE_HEALTH, ALICE_BASE_DAMAGE, startingPos, sign), currentWeapon(nullptr)
 {
 }
 

@@ -26,8 +26,8 @@ public:
 	
 
 
-	void addHero(Hero& hero); 
-	void addWeapon(Weapon& weapon);
+	void addHero(Hero* hero); 
+	void addWeapon(Weapon* weapon);
 	void setEntrancePortal(Position& toSet);
 	void setExitPortal(Position& toSet); 
 	void setSize(int newSize);
@@ -35,11 +35,13 @@ public:
 	Position getEntrancePortal() const; 
 	Position getExitPortal() const;
 	int getSize() const;
-	vector<Hero&> getHeroes() const; 
-	vector<Weapon&> getWeapons() const; 
-	bool isFree(Position& toCheck)const;
+	vector<Hero*> getHeroes() const; 
+	vector<Weapon*> getWeapons() const; 
+	//bool isFree(Position& toCheck)const;
 
-	void buildMap(); 
+	void addHeroOnMap(Hero* toAdd); 
+	void addWeaponOnMap(Weapon* toAdd);
+	void buildBoard(); 
 	void visualize() const; 
 	void setAliceToBegin(Alice& alice); 
 

@@ -1,23 +1,31 @@
 #include "Weapon.h"
 #include "ConstantsNamesAndDescriptions.h"
-Weapon::Weapon(int damage, string name, string description)
-	:damage(damage), name(name), descripition(description)
+Weapon::Weapon(int damage, string name, string description,char sign, Position startingPos)
+	:damage(damage), name(name), descripition(description), sign(sign), startPos(startingPos)
 { }
 Weapon::~Weapon()
 {
 	delete[] ability; 
 }
-int Weapon::getDamage()
+int Weapon::getDamage() const
 {
 	return damage;
 }
-string Weapon::getDescription()
+string Weapon::getDescription() const
 {
 	return descripition; 
 }
-string Weapon::getName()
+string Weapon::getName()const
 {
 	return name;
+}
+char Weapon::getSign()const 
+{
+	return sign;
+}
+Position Weapon::getPos() const
+{
+	return startPos;
 }
 void Weapon::setDamage(int value)
 {
@@ -26,8 +34,8 @@ void Weapon::setDamage(int value)
 
 
 //Teleport potion
-TeleportPotion::TeleportPotion(Hero* owner, Position& toPort)
-	:Weapon(teleportPotionDamage, name, teleportPotionDescription), owner(owner), toPort(toPort)
+TeleportPotion::TeleportPotion(Position startingPos, Hero* owner, Position& toPort)
+	:Weapon(teleportPotionDamage, name, teleportPotionDescription, teleportSign, startingPos), owner(owner), toPort(toPort)
 {
 	ability = new Teleport(toPort, owner);
 }
@@ -38,8 +46,8 @@ Weapon* TeleportPotion::clone() const
 }
 
 //Potion "Drink me" 
-PotionDrinkMe::PotionDrinkMe(Hero* owner)
-	:Weapon(potionDrinkMeDamage, potionDrinkMeName, potionDrinkMeDescription), owner(owner)
+PotionDrinkMe::PotionDrinkMe(Position startPos, Hero* owner)
+	:Weapon(potionDrinkMeDamage, potionDrinkMeName, potionDrinkMeDescription, potionDrinkMeSign, startPos), owner(owner)
 {
 	ability = new SetDamage(owner, 10);
 }
@@ -50,8 +58,8 @@ Weapon* PotionDrinkMe::clone() const
 }
 
 //Cookie "Eat Me"
-CookieEatMe::CookieEatMe(Hero* owner)
-	:Weapon(cookieEatMeDamage, cookieEatMeName, cookieEatMeDescription), owner(owner)
+CookieEatMe::CookieEatMe(Position startPos, Hero* owner)
+	:Weapon(cookieEatMeDamage, cookieEatMeName, cookieEatMeDescription, cookieEatMeSign, startPos), owner(owner)
 {
 	ability = new SetDamage(owner, 40);
 }
@@ -62,8 +70,8 @@ Weapon* CookieEatMe::clone() const
 }
 
 //Magic fan
-MagicFan::MagicFan()
-	:Weapon(magicFanDamage, magicFanName, MagicFanDescription)
+MagicFan::MagicFan(Position startPos)
+	:Weapon(magicFanDamage, magicFanName, MagicFanDescription, magicFanSign, startPos)
 {
 	ability = nullptr;
 }
@@ -75,8 +83,8 @@ Weapon* MagicFan::clone() const
 
 
 //Inbisible hat
-InvisibleHat::InvisibleHat() 
-	:Weapon(invisibleHatDamage, invisibleHatName, invisibleHatDescription)
+InvisibleHat::InvisibleHat(Position startPos)
+	:Weapon(invisibleHatDamage, invisibleHatName, invisibleHatDescription, invisibleHatSign, startPos)
 {
 	ability = new SkipNextMonster();
 }
@@ -88,8 +96,8 @@ Weapon* InvisibleHat::clone() const
 
 
 //Take a rose 
-Rose::Rose(Hero* owner)
-	:Weapon(defaultValue, takeARoseName, takeARoseDescription), owner(owner)
+Rose::Rose(Position startPos, Hero* owner)
+	:Weapon(defaultValue, takeARoseName, takeARoseDescription, takeARoseSign, startPos), owner(owner)
 {
 	ability = new TakeARose(owner);
 }
