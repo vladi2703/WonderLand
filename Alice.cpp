@@ -1,10 +1,10 @@
 #include "Alice.h"
 const int ALICE_BASE_DAMAGE = 15;
 const int ALICE_BASE_HEALTH = 100;
-
+const string ALICE_NAME = "Alice";
 
 Alice::Alice(Position& startingPos, char sign)
-	:Hero(ALICE_BASE_HEALTH, ALICE_BASE_DAMAGE, startingPos, sign), currentWeapon(nullptr)
+	:Hero(ALICE_NAME, ALICE_BASE_HEALTH, ALICE_BASE_DAMAGE, startingPos, sign), currentWeapon(nullptr)
 {
 }
 

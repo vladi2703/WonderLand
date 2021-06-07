@@ -181,3 +181,54 @@ void Board::setAliceToBegin(Alice& alice)
 	alice.setPosition(entrancePortal); 
 }
 
+void Board::removeHero(const Hero& killedHero)
+{
+	int heroCount = heroes.size();
+	if (heroCount == 1 && *heroes[0] == killedHero)
+	{
+		heroes.pop_back();	
+		return;
+	}
+	bool found = false;
+	for (int i = 0; i < heroCount; i++)
+	{
+		if (*heroes[i] != killedHero && !found) //after found not needed to check
+		{
+			found = true;
+		}
+		heroes[i] = heroes[i + 1];
+		if (found)
+		{
+			heroes[i] = heroes[i + 1]; 
+		}
+		heroes.pop_back();
+	}
+	throw std::out_of_range("No such hero found");
+
+}
+void Board::removeWeapon(const Weapon& collectedWeapon)
+{
+	bool found = false;
+	int weaponsCount = freeWeapons.size();
+	if (weaponsCount == 1 && *freeWeapons[0] == collectedWeapon) //not to delete the last weapon, when wrong weapon is added
+	{
+		freeWeapons.pop_back(); 
+	}
+	for (int i = 0; i < weaponsCount; i++)
+	{
+		if (*freeWeapons[i] != collectedWeapon && !found) //after found not needed to check
+		{
+			found = true;
+		}
+		if (found) //from this index till end
+		{
+			freeWeapons[i] = freeWeapons[i + 1];
+		}
+		freeWeapons.pop_back(); 
+	}
+	if (!found)
+	{
+		throw std::out_of_range("No such weapon found");
+	}
+}
+

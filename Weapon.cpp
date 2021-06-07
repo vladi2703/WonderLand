@@ -27,6 +27,14 @@ Position Weapon::getPos() const
 {
 	return startPos;
 }
+bool Weapon::operator==(const Weapon& rhs)
+{
+	return (descripition == rhs.descripition && name == rhs.name && startPos == rhs.startPos);
+}
+bool Weapon::operator!=(const Weapon& rhs)
+{
+	return !operator==(rhs);
+}
 void Weapon::setDamage(int value)
 {
 	damage = value;

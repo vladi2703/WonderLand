@@ -1,7 +1,7 @@
 #include "Hero.h"
 
-Hero::Hero(int hp, int damage, Position& pos, char sign)
-    :hitpoints(hp), damage(damage), pos(pos), sign(sign)
+Hero::Hero(string name, int hp, int damage, Position& pos, char sign)
+    :hitpoints(hp), damage(damage), pos(pos), sign(sign), name(name)
 { }
 
 void Hero::attack(Hero& enemy)
@@ -34,6 +34,11 @@ char Hero::getSign() const
     return sign;
 }
 
+string Hero::getName() const
+{
+    return name;
+}
+
 void Hero::setDamage(const int value)  
 { 
     this->damage = value;
@@ -47,4 +52,14 @@ void Hero::setPosition(Position& pos)
 void Hero::resetHP(int maxHP)
 {
     hitpoints = maxHP;
+}
+
+bool Hero::operator==(const Hero& rhs)
+{
+    return (name==name); //TODO: think of position -> will it change when heroes are moved
+}
+
+bool Hero::operator!=(const Hero& rhs)
+{
+    return !operator==(rhs);
 }

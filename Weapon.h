@@ -26,6 +26,9 @@ public:
 	string getName() const;
 	char getSign() const;
 	Position getPos() const; 
+	
+	bool operator==(const Weapon& rhs);
+	bool operator!=(const Weapon& rhs);
 
 	virtual Weapon* clone() const = 0; 
 };

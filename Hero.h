@@ -7,10 +7,11 @@ class Hero
 {
 private: 
 protected:
+	string name; 
 	int hitpoints; 
 	int damage; 
 	Position pos; 
-	Hero(int hp, int damage, Position& pos, char sign);
+	Hero(string name, int hp, int damage, Position& pos, char sign);
 	char sign;
 public:
 
@@ -22,6 +23,7 @@ public:
 	int getHp() const; 
 	Position getPos() const;
 	char getSign() const;
+	string getName() const; 
 
 	void setDamage(const int value); 
 	void setPosition(Position& pos); 
@@ -34,6 +36,9 @@ public:
 	void resetHP(int maxHP);
 
 	virtual Hero* clone() const = 0 ;
+
+	bool operator==(const Hero& rhs);
+	bool operator!=(const Hero& rhs);
 };
 
 
