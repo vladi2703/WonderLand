@@ -16,7 +16,7 @@ private:
 	Position entrancePortal; 
 	Position exitPortal; 
 	
-	void copyFrom(const Board other);
+	void copyFrom(const Board& other);
 	void free(); 
 public:
 	Board();

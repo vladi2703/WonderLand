@@ -32,6 +32,7 @@ public:
 
 	void resetHP(int maxHP);
 
+	virtual Hero* clone() const = 0 ;
 };
 
 

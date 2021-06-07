@@ -23,7 +23,7 @@ public:
 	string getDescription();	
 	string getName();
 	
-
+	virtual Weapon* clone() const = 0; 
 };
 
 class TeleportPotion : public Weapon 
@@ -33,7 +33,7 @@ private:
 	Position toPort; //position we want to teleport the "owner" 
 public: 
 	TeleportPotion(Hero* owner, Position& toPort);
-	Weapon* clone();
+	Weapon* clone() const override;
 };
  
 class PotionDrinkMe :public Weapon
@@ -42,7 +42,7 @@ private:
 	Hero* owner; //owner of the potion
 public:
 	PotionDrinkMe(Hero* owner);
-	Weapon* clone();
+	Weapon* clone() const override;
 
 };
 class CookieEatMe :public Weapon
@@ -51,7 +51,7 @@ private:
 	Hero* owner; //owner of the cookie
 public:
 	CookieEatMe(Hero* owner);
-	Weapon* clone();
+	Weapon* clone() const override;
 
 };
 
@@ -59,14 +59,14 @@ class MagicFan : public Weapon
 {
 public:
 	MagicFan();
-	Weapon* clone();
+	Weapon* clone() const override;
 };
 
 class InvisibleHat : public Weapon
 {
 public:
 	InvisibleHat();
-	Weapon* clone();
+	Weapon* clone() const override;
 };
 
 class Rose : public Weapon
@@ -75,7 +75,7 @@ private:
 	Hero* owner;
 public:
 	Rose(Hero* owner);
-	Weapon* clone();
+	Weapon* clone() const override;
 };
 
 

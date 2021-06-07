@@ -19,7 +19,8 @@ public:
 	void showInventory(); 
 	void addWeapon(Weapon* newWeapon); 
 	void useWeapon(); 
-
 	void revertDamage(); 
+
+	Hero* clone() const override;
 };
 

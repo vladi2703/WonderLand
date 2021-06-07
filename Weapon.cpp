@@ -31,7 +31,7 @@ TeleportPotion::TeleportPotion(Hero* owner, Position& toPort)
 {
 	ability = new Teleport(toPort, owner);
 }
-Weapon* TeleportPotion::clone()
+Weapon* TeleportPotion::clone() const 
 {
 	TeleportPotion* copy = new TeleportPotion (*this);
 	return copy;
@@ -43,7 +43,7 @@ PotionDrinkMe::PotionDrinkMe(Hero* owner)
 {
 	ability = new SetDamage(owner, 10);
 }
-Weapon* PotionDrinkMe::clone()
+Weapon* PotionDrinkMe::clone() const 
 {
 	PotionDrinkMe* copy = new PotionDrinkMe(*this);
 	return copy;
@@ -55,7 +55,7 @@ CookieEatMe::CookieEatMe(Hero* owner)
 {
 	ability = new SetDamage(owner, 40);
 }
-Weapon* CookieEatMe::clone()
+Weapon* CookieEatMe::clone() const
 {
 	CookieEatMe* copy = new CookieEatMe(*this);
 	return copy;
@@ -67,7 +67,7 @@ MagicFan::MagicFan()
 {
 	ability = nullptr;
 }
-Weapon* MagicFan::clone()
+Weapon* MagicFan::clone() const
 {
 	MagicFan* copy = new MagicFan(*this);
 	return copy;
@@ -75,12 +75,12 @@ Weapon* MagicFan::clone()
 
 
 //Inbisible hat
-InvisibleHat::InvisibleHat()
+InvisibleHat::InvisibleHat() 
 	:Weapon(invisibleHatDamage, invisibleHatName, invisibleHatDescription)
-{ 
+{
 	ability = new SkipNextMonster();
 }
-Weapon* InvisibleHat::clone()
+Weapon* InvisibleHat::clone() const
 {
 	InvisibleHat* copy = new InvisibleHat(*this);
 	return copy;
@@ -93,7 +93,7 @@ Rose::Rose(Hero* owner)
 {
 	ability = new TakeARose(owner);
 }
-Weapon* Rose::clone()
+Weapon* Rose::clone() const
 {
 	Rose* copy = new Rose(*this);
 	return copy;

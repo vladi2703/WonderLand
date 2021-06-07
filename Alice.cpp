@@ -54,3 +54,8 @@ void Alice::revertDamage()
 {
 	this->setDamage(ALICE_BASE_DAMAGE);
 }
+Hero* Alice::clone() const
+{
+	Hero* copy = new Alice(*this); 
+	return copy; 
+}
