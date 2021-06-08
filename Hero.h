@@ -11,8 +11,8 @@ protected:
 	int hitpoints; 
 	int damage; 
 	Position pos; 
-	Hero(string name, int hp, int damage, Position& pos, char sign);
 	char sign;
+	Hero(string name, int hp, int damage, Position& pos, char sign);
 public:
 
 	void attack(Hero& enemy); 

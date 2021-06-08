@@ -2,16 +2,24 @@
 #include "Alice.h"
 #include "Weapon.h"
 #include "Board.h"
+void movement()
+{
+	
+}
+
 int main()
 {
 	Position pos(0, 0); 
 	Alice* a = new Alice(pos);
 	Rose* w = new Rose(pos, a); 
-	//a->addWeapon(w);
+	//a->addWeapon(w)
 	//a->showInventory(); 
 	//w->ability->execute();
 	//std::cout << a->getDamage(); 
 
+
+
+	//Map1 setting
 	Board map1; 
 	map1.setSize(10);
 	map1.addWeapon(w); 

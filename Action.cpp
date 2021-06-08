@@ -55,17 +55,17 @@ void Teleport::execute() const
 }
 
 Attack::Attack(Hero* enemy, const Hero* attacker, int damage = 0)
+	:enemy(enemy), attacker(attacker), damage(damage)
 {
 	if (damage == 0)
 	{
 		damage = attacker->getDamage();
 	}
-	enemy->takeDamage(damage);
 }
 
 void Attack::execute() const
 {
-
+	enemy->takeDamage(damage);
 }
 //
 //CollectWeapon::CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer)

@@ -52,6 +52,8 @@ public:
 class Attack : public Action
 {
 	Hero* enemy;
+	const Hero* attacker; 
+	int damage; 
 public:
 	Attack(Hero* enemy, const Hero* attacker, int damage);
 	void execute() const override;

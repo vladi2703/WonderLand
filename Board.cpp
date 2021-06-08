@@ -233,14 +233,32 @@ void Board::moveUp(Hero* hero)
 
 void Board::moveDown(Hero* hero)
 {
+	//check for walls
+	Position pos = hero->getPos();
+	map[pos.getRow()][pos.getCol()] = '.';
+	hero->moveDown(size);
+	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
+	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
 }
 
 void Board::moveLeft(Hero* hero)
 {
+	//check for walls
+	Position pos = hero->getPos();
+	map[pos.getRow()][pos.getCol()] = '.';
+	hero->moveLeft(size);
+	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
+	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
 }
 
 void Board::moveRight(Hero* hero)
 {
+	//check for walls
+	Position pos = hero->getPos();
+	map[pos.getRow()][pos.getCol()] = '.';
+	hero->moveRight(size);
+	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
+	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
 }
 
 void Board::removeHero(const Hero& killedHero)

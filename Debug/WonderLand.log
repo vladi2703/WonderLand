@@ -1,4 +1,14 @@
-﻿  Board.cpp
-  Main.cpp
+﻿  Enemy.cpp
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\ConstantsNamesAndDescriptions.h(39,7): warning C4114: same type qualifier used more than once
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\ConstantsNamesAndDescriptions.h(44,7): warning C4114: same type qualifier used more than once
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\ConstantsNamesAndDescriptions.h(49,7): warning C4114: same type qualifier used more than once
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\ConstantsNamesAndDescriptions.h(54,7): warning C4114: same type qualifier used more than once
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\Enemy.cpp(58,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Hero.cpp
+  Weapon.cpp
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\ConstantsNamesAndDescriptions.h(39,7): warning C4114: same type qualifier used more than once
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\ConstantsNamesAndDescriptions.h(44,7): warning C4114: same type qualifier used more than once
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\ConstantsNamesAndDescriptions.h(49,7): warning C4114: same type qualifier used more than once
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\ConstantsNamesAndDescriptions.h(54,7): warning C4114: same type qualifier used more than once
   Generating Code...
   WonderLand.vcxproj -> D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\Debug\WonderLand.exe

@@ -1,7 +1,7 @@
 #include "Weapon.h"
 #include "ConstantsNamesAndDescriptions.h"
 Weapon::Weapon(int damage, string name, string description,char sign, Position startingPos)
-	:damage(damage), name(name), descripition(description), sign(sign), startPos(startingPos)
+	:damage(damage), name(name), descripition(description), sign(sign), startPos(startingPos), ability(nullptr)
 { }
 Weapon::~Weapon()
 {

@@ -30,3 +30,27 @@ const int defaultValue = 0;
 const string takeARoseName = "Toss a rose";
 const string takeARoseDescription = "Alice tosses a rose. Red - 40 damage, White - 10 damage";
 const char takeARoseSign = 'R';
+
+//--------------Enemies----------------
+const int initialHp = 100; 
+
+
+//Cheshire Cat - K(otka)
+const const int caeshireCatDamage = 0;
+const string caeshireCatName = "Caeshire Cat";
+const char caeshireCatSign = 'K';
+
+//Queen of Hearts - Q
+const const int queenOfHeartsDamage = 20;
+const string queenOfHeartsName = "Queen of hearts";
+const char queenOfHeartsSign = 'Q';
+
+//White rabbit - W
+const const int whiteRabbitDamage = 25;
+const string whiteRabbitName = "White rabbit";
+const char whiteRabbitSign = 'W';
+
+//Crazy hatter - H
+const const int crazyHatterDamage = defaultValue;
+const string crazyHatterName = "Crazy hatter";
+const char crazyHatterSign = 'H';
