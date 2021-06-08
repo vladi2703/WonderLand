@@ -21,10 +21,15 @@ Enemy& Enemy::operator=(const Enemy& other)
 	}
 	return *this;
 }
-
 Enemy::~Enemy()
 {
 	delete[] ability;
+}
+
+Hero* Enemy::clone() const
+{
+	Hero* copy = new Enemy(*this);
+	return copy;
 }
 
 //Cat

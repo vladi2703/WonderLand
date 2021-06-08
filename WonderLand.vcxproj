@@ -155,6 +155,7 @@
     <ClInclude Include="ConstantsNamesAndDescriptions.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Hero.h" />
+    <ClInclude Include="Movement.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="SignsOnBoard.h" />
     <ClInclude Include="Weapon.h" />

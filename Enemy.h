@@ -10,6 +10,8 @@ public:
 	Enemy(const Enemy& other); 
 	Enemy& operator= (const Enemy& other); 
 	~Enemy(); 
+
+	Hero* clone() const;
 };
 
 class CheshireCat : public Enemy

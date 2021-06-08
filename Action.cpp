@@ -68,7 +68,7 @@ void Attack::execute() const
 	enemy->takeDamage(damage);
 }
 //
-//CollectWeapon::CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer)
+//Weapon::CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer)
 //	:weaponToCollect(weaponToCollect), currentPlayer(currentPlayer)
 //{ }
 //
