@@ -7,7 +7,7 @@ Position::Position(const int row, const int column, bool hasEnemy, bool hasWeapo
 
 bool Position::operator==(const Position rhs) const
 {
-    return row == (rhs.row && column == rhs.column);
+    return (row == rhs.row && column == rhs.column);
 }
 
 int Position::getRow() const

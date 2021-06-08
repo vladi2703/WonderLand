@@ -13,9 +13,12 @@ private:
 	char** map; 
 	vector<Hero*> heroes; 
 	vector<Weapon*> freeWeapons; //not collected weapons
+	vector<char> overlapedHeroesAndWeapons; //when a non-alice hero overlaps hero/weapon we should return it 
+	vector<Position> overlapedCoord;  //not to go through the whole vectors, well save them here
 	Position entrancePortal; 
 	Position exitPortal; 
-	
+	string filename; 
+
 	void copyFrom(const Board& other);
 	void free(); 
 public:
@@ -31,6 +34,7 @@ public:
 	void setEntrancePortal(Position& toSet);
 	void setExitPortal(Position& toSet); 
 	void setSize(int newSize);
+	void setFilename(string filename); 
 
 	Position getEntrancePortal() const; 
 	Position getExitPortal() const;
@@ -47,13 +51,28 @@ public:
 	void visualize() const; 
 	void setAliceToBegin(Alice& alice); 
 
-	void moveUp(Hero* hero); 
-	void moveDown(Hero* hero); 
-	void moveLeft(Hero* hero); 
-	void moveRight(Hero* hero); 
+	void moveUp(Hero* hero, Alice& alice); 
+	void moveDown(Hero* hero, Alice& alice);
+	void moveLeft(Hero* hero, Alice& alice);
+	void moveRight(Hero* hero, Alice& alice);
+
+	bool canWalk(Position pos); 
+
+	void checkForWeapon(Alice& alice);
+	void checkForHero(Alice& alice);
+	bool onExitPortal(Alice& alice);
 
 	void removeHero(const Hero& killedHero); 
 	void removeWeapon(const Weapon& collectedWeapon);
+
+	char operator[](Position& pos) const;
+	char& operator[](Position& pos);
+
+	void printHeroes();
+	Hero* choseHero(); 
+
+	void fight(Alice& alice, Hero* enemy); 
+
 
 };
 

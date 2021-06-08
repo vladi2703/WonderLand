@@ -12,10 +12,10 @@ class EmptySpace : public Action
 {
 	void execute() const override;
 };
-class Move : public Action //TODO
-{
-	void execute() const override;
-};
+//class Move : public Action //TODO
+//{
+//	void execute() const override;
+//};
 class TakeARose : public Action
 {
 private:
@@ -27,8 +27,13 @@ public:
 
 class SkipNextMonster : public Action
 {
+private:
+	Hero* heroToKill;
+	Hero* owner;
+public:
+	SkipNextMonster(Hero* owner, Hero* heroToKill);
 	void execute() const override;
-}; // TODO
+}; 
 
 class SetDamage : public Action
 {
@@ -58,13 +63,3 @@ public:
 	Attack(Hero* enemy, const Hero* attacker, int damage);
 	void execute() const override;
 };
-
-//class CollectWeapon : public Action
-//{
-//private:
-//	Weapon* weaponToCollect;
-//	Alice currentPlayer;
-//public:
-//	CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer);
-//	void execute() const override;
-//};

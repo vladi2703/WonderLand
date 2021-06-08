@@ -79,7 +79,7 @@ Weapon* CookieEatMe::clone() const
 
 //Magic fan
 MagicFan::MagicFan(Position startPos)
-	:Weapon(magicFanDamage, magicFanName, MagicFanDescription, magicFanSign, startPos)
+	:Weapon(magicFanDamage, magicFanName, magicFanDescription, magicFanSign, startPos)
 {
 	ability = nullptr;
 }
@@ -91,10 +91,10 @@ Weapon* MagicFan::clone() const
 
 
 //Inbisible hat
-InvisibleHat::InvisibleHat(Position startPos)
-	:Weapon(invisibleHatDamage, invisibleHatName, invisibleHatDescription, invisibleHatSign, startPos)
+InvisibleHat::InvisibleHat(Position startPos, Hero* owner, Hero* enemy)
+	:Weapon(invisibleHatDamage, invisibleHatName, invisibleHatDescription, invisibleHatSign, startPos), owner(owner), enemy(enemy)
 {
-	ability = new SkipNextMonster();
+	ability = new SkipNextMonster(owner, enemy);
 }
 Weapon* InvisibleHat::clone() const
 {

@@ -17,7 +17,7 @@ const char cookieEatMeSign = 'C';
 //Magic fan - M 
 const int magicFanDamage = 35;
 const string magicFanName = "Magic Fan";
-const string MagicFanDescription = "Decreases enemy and gives Alice advantage";
+const string magicFanDescription = "Decreases enemy and gives Alice advantage";
 const char magicFanSign = 'M';
 //Invisible hat - I
 const int invisibleHatDamage = 0;

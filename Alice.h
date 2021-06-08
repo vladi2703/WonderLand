@@ -21,6 +21,10 @@ public:
 	void useWeapon(); 
 	void revertDamage(); 
 
+	void castAbility() override;
+
+
 	Hero* clone() const override;
+	bool isAlice() const override;
 };
 

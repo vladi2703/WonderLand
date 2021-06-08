@@ -4,11 +4,6 @@
 #include "Weapon.h"
 #include "Board.h"
 #include "Enemy.h"
-void movement()
-{
-	
-}
-
 int main()
 {
 	//a->addWeapon(w)
@@ -17,7 +12,7 @@ int main()
 	//std::cout << a->getDamage(); 
 	
 
-
+	vector<Board> maps;
 	//Map1 setting
 //positions + size
 	const int size = 10; 
@@ -46,35 +41,34 @@ int main()
 	map1.setAliceToBegin(*a);
 	map1.buildBoard(*a); 
 	map1.visualize();
-	map1.moveUp(a);
-	map1.moveDown(h);
 	system("CLS");
 	map1.buildBoard(*a);
 	map1.visualize(); 
 
+	Hero* currentHero = a;
 	while (true)
 	{
 		if (GetAsyncKeyState(VK_UP))
 		{
-			map1.moveUp(a); 
+			map1.moveUp(currentHero, *a); 
 			system("CLS");
 			map1.visualize();
 		}
 		else if (GetAsyncKeyState(VK_DOWN))
 		{
-			map1.moveDown(a);
+			map1.moveDown(currentHero, *a);
 			system("CLS");
 			map1.visualize();
 		}
 		else if (GetAsyncKeyState(VK_LEFT))
 		{
-			map1.moveLeft(a);
+			map1.moveLeft(currentHero, *a);
 			system("CLS");
 			map1.visualize();
 		}
 		else if (GetAsyncKeyState(VK_RIGHT))
 		{
-			map1.moveRight(a);
+			map1.moveRight(currentHero, *a);
 			system("CLS");
 			map1.visualize();
 		}
@@ -83,16 +77,32 @@ int main()
 			a->showInventory();
 			a->pickWeapon();
 			a->useWeapon();
-			Sleep(300);
 		}
 
 		else if (GetAsyncKeyState(VK_ESCAPE))
 		{
-			map1.moveRight(a);
 			system("PAUSE");
+			system("CLS");
 			map1.visualize();
 		}
+		else if (GetAsyncKeyState(VK_LSHIFT))
+		{
+			std::cout << "Choose a character to command: " << std::endl;
+			map1.printHeroes();
+			Hero* choice = map1.choseHero();
+			if (choice != nullptr)
+			{
+				currentHero = choice;
+			}
+			std::cout << "To command Alice again - press left CTRL"; 
+		}
+		else if(GetAsyncKeyState(VK_LCONTROL))
+		{
+			currentHero = a;
+			std::cout << "You command Alice again";
 
+		}
+		Sleep(200);
 	}
 
 

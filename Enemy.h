@@ -11,7 +11,10 @@ public:
 	Enemy& operator= (const Enemy& other); 
 	~Enemy(); 
 
-	Hero* clone() const;
+	Hero* clone() const override;
+	bool isAlice() const override;
+
+	void castAbility() override; 
 };
 
 class CheshireCat : public Enemy
@@ -19,6 +22,7 @@ class CheshireCat : public Enemy
 private:
 	Position& toPortEnemy;
 public:
+	void castAbility() override;
 	CheshireCat(Position& startingPos, Hero* enemy, Position& toPortEnemy); //moje da ima i drugi vragove, ne samo alisa
 	void setToPortPosition(Position& newPos);
 };
@@ -38,5 +42,6 @@ public:
 class CrazyHatter: public Enemy
 {
 public:
+	void castAbility() override; 
 	CrazyHatter(Position& startingPos);
 };

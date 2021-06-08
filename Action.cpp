@@ -7,10 +7,7 @@ void EmptySpace::execute() const
 	//do nothing
 }
 
-void Move::execute() const
-{
 
-}
 //Take a rose
 TakeARose::TakeARose(Hero* champion)
 	:champion(champion)
@@ -30,9 +27,13 @@ void TakeARose::execute() const
 }
 
 
+SkipNextMonster::SkipNextMonster(Hero* owner, Hero* heroToKill)
+	:heroToKill(heroToKill)
+{ }
+
 void SkipNextMonster::execute() const
 {
-	//move 2 positions forward outside monste
+	heroToKill->takeDamage(heroToKill->getHp()); 
 }
 
 
@@ -67,12 +68,3 @@ void Attack::execute() const
 {
 	enemy->takeDamage(damage);
 }
-//
-//Weapon::CollectWeapon(Weapon* weaponToCollect, Alice currentPlayer)
-//	:weaponToCollect(weaponToCollect), currentPlayer(currentPlayer)
-//{ }
-//
-//void CollectWeapon::execute() const
-//{
-//	currentPlayer.addWeapon(weaponToCollect);
-//}

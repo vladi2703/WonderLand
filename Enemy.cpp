@@ -32,6 +32,25 @@ Hero* Enemy::clone() const
 	return copy;
 }
 
+bool Enemy::isAlice() const
+{
+	return false;
+}
+
+void Enemy::castAbility()
+{
+	if (ability != nullptr)
+	{
+		ability->execute(); 
+	}
+}
+
+void CheshireCat::castAbility()
+{
+	ability->execute(); 
+	takeDamage(getHp()); 
+}
+
 //Cat
 CheshireCat::CheshireCat(Position& startingPos, Hero* enemy, Position& toPortEnemy)
 	:Enemy(caeshireCatName, initialHp, caeshireCatDamage, startingPos, caeshireCatSign), toPortEnemy(toPortEnemy)
@@ -54,6 +73,9 @@ WhiteRabbit::WhiteRabbit(Position& startingPos)
 	: Enemy(whiteRabbitName, initialHp, whiteRabbitDamage, startingPos, whiteRabbitSign)
 {
 	ability = nullptr;
+}
+void CrazyHatter::castAbility()
+{
 }
 CrazyHatter::CrazyHatter(Position& startingPos)
 	: Enemy(crazyHatterName, initialHp, crazyHatterDamage, startingPos, crazyHatterSign)

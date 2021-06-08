@@ -37,6 +37,9 @@ public:
 	void resetHP(int maxHP);
 
 	virtual Hero* clone() const = 0 ;
+	virtual bool isAlice() const = 0;
+	virtual void castAbility() = 0;
+
 
 	bool operator==(const Hero& rhs);
 	bool operator!=(const Hero& rhs);

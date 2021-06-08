@@ -29,6 +29,7 @@ void Alice::pickWeapon() //pick a weapon - 0 to cancel; after fight - destroy we
 			continue;
 		}
 		currentWeapon = inventory[index];
+		inventory.erase(inventory.begin() + index);
 		currentWeapon->ability->execute(); 
 		break; 
 	}
@@ -72,6 +73,7 @@ void Alice::useWeapon()
 		if (useWeapon == 'y')
 		{
 			currentWeapon->ability->execute(); 
+			
 		}
 		else if(useWeapon == 'N')
 		{
@@ -93,8 +95,15 @@ void Alice::revertDamage()
 {
 	this->setDamage(ALICE_BASE_DAMAGE);
 }
+void Alice::castAbility() //yet doing nth
+{ }
 Hero* Alice::clone() const
 {
 	Hero* copy = new Alice(*this); 
 	return copy; 
+}
+
+bool Alice::isAlice() const
+{
+	return true;
 }

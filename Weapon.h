@@ -71,8 +71,10 @@ public:
 
 class InvisibleHat : public Weapon
 {
+	Hero* owner; 
+	Hero* enemy;
 public:
-	InvisibleHat(Position startPos);
+	InvisibleHat(Position startPos, Hero* owner, Hero* enemy);
 	Weapon* clone() const override;
 };
 
