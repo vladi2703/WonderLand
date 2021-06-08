@@ -41,9 +41,16 @@ public:
 
 	void addHeroOnMap(Hero* toAdd); 
 	void addWeaponOnMap(Weapon* toAdd);
-	void buildBoard(); 
+	void addAliceOnMap(Alice& alice); 
+	void addPortalOnMap(Position& toAdd, char sign);
+	void buildBoard(Alice& alice);
 	void visualize() const; 
 	void setAliceToBegin(Alice& alice); 
+
+	void moveUp(Hero* hero); 
+	void moveDown(Hero* hero); 
+	void moveLeft(Hero* hero); 
+	void moveRight(Hero* hero); 
 
 	void removeHero(const Hero& killedHero); 
 	void removeWeapon(const Weapon& collectedWeapon);

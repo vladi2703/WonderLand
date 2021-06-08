@@ -51,7 +51,7 @@ void Board::free()
 }
 
 Board::Board()
-	:size(0), map(nullptr)
+	:size(0), map(nullptr), entrancePortal(Position()), exitPortal(Position())
 {
 }
 
@@ -150,8 +150,39 @@ void Board::addWeaponOnMap(Weapon* toAdd)
 	map[pos.getRow()][pos.getCol()] = toAdd->getSign();
 }
 
-void Board::buildBoard()
+void Board::addAliceOnMap(Alice& alice)
 {
+	Position pos = alice.getPos();
+	if (pos.getRow() >= size || pos.getRow() < 0 || pos.getCol() >= size || pos.getCol() < 0)
+	{
+		throw std::invalid_argument("Invalid position of a weapon");
+	}
+	map[pos.getRow()][pos.getCol()] = alice.getSign();
+}
+
+void Board::addPortalOnMap(Position& toAdd, char sign)
+{
+	if (toAdd.getRow() >= size || toAdd.getRow() < 0 || toAdd.getCol() >= size || toAdd.getCol() < 0)
+	{
+		throw std::invalid_argument("Invalid position of a weapon");
+	}
+	map[toAdd.getRow()][toAdd.getCol()] = sign;
+
+}
+
+void Board::buildBoard(Alice& alice)
+{
+	
+	map = new char* [size];
+	for (int i = 0; i < size; i++)
+	{
+		map[i] = new char[size];
+		for (int j = 0; j < size; j++)
+		{
+			map[i][j] = '.';
+		}
+	}
+
 	int heroCount = heroes.size();
 	int weaponsCount = freeWeapons.size(); 
 	for (int i = 0; i < heroCount; i++)
@@ -162,6 +193,10 @@ void Board::buildBoard()
 	{
 		addWeaponOnMap(freeWeapons[i]);
 	}
+	addPortalOnMap(entrancePortal, 'e');
+	addPortalOnMap(exitPortal, '0');
+	addAliceOnMap(alice);
+
 }
 
 void Board::visualize() const
@@ -178,7 +213,34 @@ void Board::visualize() const
 
 void Board::setAliceToBegin(Alice& alice)
 {
-	alice.setPosition(entrancePortal); 
+	Position pos = alice.getPos();
+	if (pos.getRow() >= size || pos.getRow() < 0 || pos.getCol() >= size || pos.getCol() < 0)
+	{
+		throw std::invalid_argument("Invalid position of a hero");
+	}
+	alice.setPosition(entrancePortal);
+}
+
+void Board::moveUp(Hero* hero)
+{
+	//check for walls
+	Position pos = hero->getPos();
+	map[pos.getRow()][pos.getCol()] = '.';
+	hero->moveUp(size);
+	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
+	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
+}
+
+void Board::moveDown(Hero* hero)
+{
+}
+
+void Board::moveLeft(Hero* hero)
+{
+}
+
+void Board::moveRight(Hero* hero)
+{
 }
 
 void Board::removeHero(const Hero& killedHero)

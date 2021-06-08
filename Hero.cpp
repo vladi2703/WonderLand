@@ -49,6 +49,51 @@ void Hero::setPosition(Position& pos)
     this->pos = pos;
 }
 
+bool Hero::isValidPosition(Position& pos, int sizeOfMap)
+{
+    return (pos.getRow() >= 0 && pos.getRow() < sizeOfMap && pos.getCol() >= 0 && pos.getCol() < sizeOfMap);
+}
+
+void Hero::moveUp(int sizeOfMap)
+{
+    Position old = pos; 
+    pos.moveUp(); 
+    if (!isValidPosition(pos, sizeOfMap))
+    {
+        pos = old;
+    }
+}
+
+void Hero::moveDown(int sizeOfMap)
+{
+    Position old = pos;
+    pos.moveDown();
+    if (!isValidPosition(pos, sizeOfMap))
+    {
+        pos = old;
+    }
+}
+
+void Hero::moveRight(int sizeOfMap)
+{
+    Position old = pos;
+    pos.moveRight();
+    if (!isValidPosition(pos, sizeOfMap))
+    {
+        pos = old;
+    }
+}
+
+void Hero::moveLeft(int sizeOfMap)
+{
+    Position old = pos;
+    pos.moveLeft();
+    if (!isValidPosition(pos, sizeOfMap))
+    {
+        pos = old;
+    }
+}
+
 void Hero::resetHP(int maxHP)
 {
     hitpoints = maxHP;

@@ -28,10 +28,11 @@ public:
 	void setDamage(const int value); 
 	void setPosition(Position& pos); 
 
-	void moveUp();
-	void moveDown();
-	void moveRight(); 
-	void moveLeft(); 
+	bool isValidPosition(Position& pos, int sizeOfMap); 
+	void moveUp(int sizeOfMap);
+	void moveDown(int sizeOfMap);
+	void moveRight(int sizeOfMap);
+	void moveLeft(int sizeOfMap);
 
 	void resetHP(int maxHP);
 

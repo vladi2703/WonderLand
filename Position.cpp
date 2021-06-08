@@ -20,6 +20,26 @@ int Position::getCol() const
     return column;
 }
 
+void Position::moveUp()
+{
+    row -= 1; 
+}
+
+void Position::moveDown()
+{
+    row += 1; 
+}
+
+void Position::moveLeft()
+{
+    column -= 1;
+}
+
+void Position::moveRight()
+{
+    column += 1;
+}
+
 Position getRandomPos(int size)
 {
     srand(time(NULL));

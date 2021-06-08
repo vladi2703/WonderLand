@@ -18,6 +18,11 @@ public:
 	int getRow() const;
 	int getCol() const;
 
+	void moveUp(); 
+	void moveDown(); 
+	void moveLeft(); 
+	void moveRight(); 
+
 	friend Position getRandomPos(int size); 
 };
 
