@@ -45,3 +45,9 @@ Position getRandomPos(int size)
     srand(time(NULL));
     return Position(rand() % size, rand() % size);
 }
+
+std::ostream& operator<<(std::ostream& o_stream, const Position& pos)
+{
+    o_stream << "X:" << pos.column << " Y:"<< pos.row;
+    return o_stream;
+}

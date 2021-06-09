@@ -28,7 +28,7 @@ void TakeARose::execute() const
 
 
 SkipNextMonster::SkipNextMonster(Hero* owner, Hero* heroToKill)
-	:heroToKill(heroToKill)
+	:owner(owner), heroToKill(heroToKill)
 { }
 
 void SkipNextMonster::execute() const

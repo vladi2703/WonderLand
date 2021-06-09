@@ -1,0 +1,7 @@
+ Size set: 10
+Hero Toss a rose added 
+Hero Caeshire Cat added on position X:2 Y:2
+Hero Crazy hatter added on position X:6 Y:4
+Entrance portal added on position X:1 Y:3
+Exit portal added on position X:7 Y:4
+Alice is on the entrance portal

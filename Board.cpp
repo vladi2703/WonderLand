@@ -1,5 +1,5 @@
 #include "Board.h"
-
+#include "fstream"
 void Board::copyFrom(const Board& other)
 {
 	size = other.size; 
@@ -78,31 +78,87 @@ Board::~Board()
 void Board::addHero(Hero* hero)
 {
 	heroes.push_back(hero); 
+
+	std::ofstream of_stream;
+	of_stream.open(filename, std::ios::app);
+	if (!of_stream.is_open())
+	{
+		throw std::invalid_argument("File not open!");
+	}
+
+	of_stream << "Hero " << hero->getName() << " added on position " << hero->getPos() << '\n';   
+	of_stream.close(); 
 }
 
 void Board::addWeapon(Weapon* weapon)
 {
 	freeWeapons.push_back(weapon);
+	std::ofstream of_stream;
+	of_stream.open(filename, std::ios::app);
+	if (!of_stream.is_open())
+	{
+		throw std::invalid_argument("File not open!");
+	}
+
+	of_stream << "Weapon  " << weapon->getName() << " added \n";
+
+	of_stream.close();
 }
 
 void Board::setEntrancePortal(Position& toSet)
 {
 	entrancePortal = toSet; 
+	std::ofstream of_stream;
+	of_stream.open(filename, std::ios::app);
+	if (!of_stream.is_open())
+	{
+		throw std::invalid_argument("File not open!");
+	}
+
+	of_stream << "Entrance portal added on position " << toSet << '\n';
+	of_stream.close();
 }
 
 void Board::setExitPortal(Position& toSet)
 {
 	exitPortal = toSet;
+	std::ofstream of_stream;
+	of_stream.open(filename, std::ios::app);
+	if (!of_stream.is_open())
+	{
+		throw std::invalid_argument("File not open!");
+	}
+
+	of_stream << "Exit portal added on position " << toSet << '\n';
+	of_stream.close();
 }
 
 void Board::setSize(int newSize)
 {
 	size = newSize;
+	std::ofstream of_stream;
+	of_stream.open(filename, std::ios::app);
+	if (!of_stream.is_open())
+	{
+		throw std::invalid_argument("File not open!");
+	}
+
+	of_stream << "Size set: " << size << '\n';
+	of_stream.close();
 }
 
 void Board::setFilename(string filename)
 {
 	this->filename = filename;
+	std::ofstream of_stream;
+	of_stream.open(filename);
+	if (!of_stream.is_open())
+	{
+		throw std::invalid_argument("File not open!");
+	}
+
+	of_stream << " "; //clear file
+	of_stream.close();
 }
 
 Position Board::getEntrancePortal() const
@@ -232,6 +288,15 @@ void Board::setAliceToBegin(Alice& alice)
 		throw std::invalid_argument("Invalid position of a hero");
 	}
 	alice.setPosition(entrancePortal);
+	std::ofstream of_stream;
+	of_stream.open(filename, std::ios::app);
+	if (!of_stream.is_open())
+	{
+		throw std::invalid_argument("File not open!");
+	}
+
+	of_stream << "Alice is on the entrance portal" << '\n';
+	of_stream.close();
 }
 
 void Board::moveUp(Hero* hero, Alice& alice)
@@ -261,7 +326,18 @@ void Board::moveUp(Hero* hero, Alice& alice)
 		hero->moveDown(size); 
 		return;
 	}
+	else
+	{
+		std::ofstream of_stream;
+		of_stream.open(filename, std::ios::app);
+		if (!of_stream.is_open())
+		{
+			throw std::invalid_argument("File not open!");
+		}
 
+		of_stream << hero->getName() <<" moved up to position " << hero->getPos()<< '\n';
+		of_stream.close();
+	}
 	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
 	addPortalOnMap(exitPortal, '0');
 	map[pos.getRow()][pos.getCol()] = '.';
@@ -306,12 +382,23 @@ void Board::moveDown(Hero* hero, Alice& alice)
 		hero->moveUp(size);
 		return;
 	}
+	else
+	{
+		std::ofstream of_stream;
+		of_stream.open(filename, std::ios::app);
+		if (!of_stream.is_open())
+		{
+			throw std::invalid_argument("File not open!");
+		}
+
+		of_stream << hero->getName() << " moved down to position " << hero->getPos() << '\n';
+		of_stream.close();
+	}
 	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
 	if (hero->isAlice())
 	{
 		checkForWeapon(alice);
 		checkForHero(alice);
-
 	}
 	map[pos.getRow()][pos.getCol()] = '.';
 	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
@@ -346,6 +433,18 @@ void Board::moveLeft(Hero* hero, Alice& alice)
 	{
 		hero->moveRight(size);
 		return;
+	}
+	else
+	{
+		std::ofstream of_stream;
+		of_stream.open(filename, std::ios::app);
+		if (!of_stream.is_open())
+		{
+			throw std::invalid_argument("File not open!");
+		}
+
+		of_stream << hero->getName() << " moved left to position " << hero->getPos() << '\n';
+		of_stream.close();
 	}
 	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
 	if (hero->isAlice())
@@ -388,6 +487,18 @@ void Board::moveRight(Hero* hero, Alice& alice)
 		hero->moveLeft(size);
 		return;
 	}
+	else
+	{
+		std::ofstream of_stream;
+		of_stream.open(filename, std::ios::app);
+		if (!of_stream.is_open())
+		{
+			throw std::invalid_argument("File not open!");
+		}
+
+		of_stream << hero->getName() << " moved right to position " << hero->getPos() << '\n';
+		of_stream.close();
+	}
 	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
 	if (hero->isAlice())
 	{
@@ -429,6 +540,17 @@ void Board::checkForWeapon(Alice& alice)
 	{
 		if (alice.getPos() == freeWeapons[i]->getPos())
 		{
+			std::ofstream of_stream;
+			of_stream.open(filename, std::ios::app);
+			if (!of_stream.is_open())
+			{
+				throw std::invalid_argument("File not open!");
+			}
+
+			of_stream << alice.getName() << " found a " << freeWeapons[i]->getName() << "on position " << freeWeapons[i]->getPos() << '\n';
+			of_stream.close();
+
+
 			std::cout << "Found a " << freeWeapons[i]->getName(); 
 			alice.collectWeapon(freeWeapons[i]);
 			freeWeapons.erase(freeWeapons.begin() + i);
@@ -444,6 +566,16 @@ void Board::checkForHero(Alice& alice)
 	{
 		if (alice.getPos() == heroes[i]->getPos())
 		{
+			std::ofstream of_stream;
+			of_stream.open(filename, std::ios::app);
+			if (!of_stream.is_open())
+			{
+				throw std::invalid_argument("File not open!");
+			}
+
+			of_stream << alice.getName() << " encountered the " << heroes[i]->getName() << " on position "<< heroes[i]->getPos() << '\n';
+			of_stream.close();
+
 			std::cout << "Encountered the " << heroes[i]->getName() << std::endl;
 			fight(alice, heroes[i]);
 			
@@ -580,7 +712,7 @@ Hero* Board::choseHero()
 		{
 			return nullptr;
 		}
-		if (index < -1 || index > heroes.size())
+		if (index < -1 || index > signed(heroes.size()))
 		{
 			std::cout << "Enter a valid index and a 0 to cancel: ";
 			std::cin >> index;

@@ -4,6 +4,9 @@
 #include "Weapon.h"
 #include "Board.h"
 #include "Enemy.h"
+
+const string filename = "DataBase.txt";
+
 int main()
 {
 	//a->addWeapon(w)
@@ -32,6 +35,7 @@ int main()
 	CrazyHatter* h = new CrazyHatter(pos46);
 //board
 	Board map1; 
+	map1.setFilename(filename);
 	map1.setSize(size);
 	map1.addWeapon(r); 
 	map1.addHero(k);

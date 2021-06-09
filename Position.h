@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <fstream>
 class Position
 {
 private:
@@ -23,6 +24,9 @@ public:
 	void moveLeft(); 
 	void moveRight(); 
 
+	
 	friend Position getRandomPos(int size); 
+	friend std::ostream& operator<< (std::ostream& o_stream, const Position& pos);
+	
 };
 

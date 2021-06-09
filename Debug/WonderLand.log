@@ -1,2 +1,5 @@
-﻿  Main.cpp
+﻿  Board.cpp
+  Position.cpp
+D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\WonderLand\Position.cpp(45,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
   WonderLand.vcxproj -> D:\Documents\ФМИ\1 курс\2 семестър\ООП\Wonder Land\WonderLand\Debug\WonderLand.exe
