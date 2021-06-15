@@ -27,13 +27,13 @@ void TakeARose::execute() const
 }
 
 
-SkipNextMonster::SkipNextMonster(Hero* owner, Hero* heroToKill)
-	:owner(owner), heroToKill(heroToKill)
+SkipNextMonster::SkipNextMonster(Hero* owner)
+	:owner(owner)
 { }
 
 void SkipNextMonster::execute() const
 {
-	heroToKill->takeDamage(heroToKill->getHp()); 
+	//owner->addFreeMoves(3); 
 }
 
 

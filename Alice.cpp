@@ -4,7 +4,7 @@ const int ALICE_BASE_HEALTH = 100;
 const string ALICE_NAME = "Alice";
 
 Alice::Alice(Position& startingPos, char sign)
-	:Hero(ALICE_NAME, ALICE_BASE_HEALTH, ALICE_BASE_DAMAGE, startingPos, sign), currentWeapon(nullptr)
+	:Hero(ALICE_NAME, ALICE_BASE_HEALTH, ALICE_BASE_DAMAGE, startingPos, sign), currentWeapon(nullptr), freeMoves(0)
 {
 }
 
@@ -30,7 +30,7 @@ void Alice::pickWeapon() //pick a weapon - 0 to cancel; after fight - destroy we
 		}
 		currentWeapon = inventory[index];
 		inventory.erase(inventory.begin() + index);
-		currentWeapon->ability->execute(); 
+		//currentWeapon->ability->execute(); 
 		break; 
 	}
 	
@@ -40,7 +40,8 @@ void Alice::showInventory()
 	int countOfItems = inventory.size(); 
 	if (countOfItems == 0)
 	{
-		std::cout << "Your inventory is empty" << std::endl; //intentionally not an exception
+		std::cout << "Your inventory is empty" << std::endl; //intentionally not an exception]
+		return;
 	}
 	for (int i = 0; i < countOfItems; i++)
 	{
@@ -101,6 +102,17 @@ void Alice::rebirth()
 }
 void Alice::castAbility() //yet doing nth
 { }
+void Alice::addFreeMoves(int value)
+{
+	if (value >= 0)
+	{
+		freeMoves += value;
+	}
+}
+int Alice::getFreeMoves() const
+{
+	return freeMoves;
+}
 Hero* Alice::clone() const
 {
 	Hero* copy = new Alice(*this); 

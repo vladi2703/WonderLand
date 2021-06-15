@@ -59,7 +59,7 @@ void CheshireCat::setToPortPosition(Position& newPos)
 void CheshireCat::castAbility() 
 {
 	ability->execute();
-	takeDamage(getHp()); //kill 
+	this->takeDamage(getHp()); //kill 
 }
 
 //Queen
@@ -85,5 +85,4 @@ CrazyHatter::CrazyHatter(Position& startingPos)
 	
 	srand(time(NULL));
 	damage = rand() % 20 + 10;
-
 }	

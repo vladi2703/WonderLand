@@ -22,13 +22,22 @@ public:
 	void execute() const override;
 };
 
+//class SkipNextMonster : public Action
+//{
+//private:
+//	Alice* owner;
+//	int moves; 
+//public:
+//	SkipNextMonster(Alice* owner);
+//	void execute() const override;
+//};
 class SkipNextMonster : public Action
 {
 private:
-	Hero* heroToKill;
 	Hero* owner;
+	int moves; 
 public:
-	SkipNextMonster(Hero* owner, Hero* heroToKill);
+	SkipNextMonster(Hero* owner);
 	void execute() const override;
 }; 
 

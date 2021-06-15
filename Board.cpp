@@ -1,5 +1,9 @@
 #include "Board.h"
 #include "fstream"
+
+const char EMPTY_SPACE_CHAR = '.';
+const char WALL_CHAR = '#'; 
+
 void Board::copyFrom(const Board& other)
 {
 	size = other.size;
@@ -248,11 +252,11 @@ void Board::buildBoard(Alice& alice)
 			bool isWall = (rand() % 4 == 1);
 			if (isWall)
 			{
-				map[i][j] = '#';
+				map[i][j] = WALL_CHAR;
 			}
 			else
 			{
-				map[i][j] = '.';
+				map[i][j] = EMPTY_SPACE_CHAR;
 			}
 		}
 	}
@@ -319,7 +323,7 @@ void Board::moveUp(Hero* hero, Alice& alice)
 	Position pos = hero->getPos();
 	//if (hero->isAlice())
 	//{
-	//	map[pos.getRow()][pos.getCol()] = '.';
+	//	map[pos.getRow()][pos.getCol()] = EMPTY_SPACE_CHAR;
 	//}
 	//else
 	//{
@@ -354,11 +358,13 @@ void Board::moveUp(Hero* hero, Alice& alice)
 	}
 	addPortalOnMap(entrancePortal, 'e'); //if the hero was on the ent portal
 	addPortalOnMap(exitPortal, '0');
-	map[pos.getRow()][pos.getCol()] = '.';
+	map[pos.getRow()][pos.getCol()] = EMPTY_SPACE_CHAR;
 	if (hero->isAlice())
 	{
 		checkForWeapon(alice);
-		checkForHero(alice);
+		if (alice.getFreeMoves() <= 0)	
+			checkForHero(alice);	
+		
 	}
 	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
 	if (!hero->isAlice())
@@ -389,7 +395,7 @@ void Board::moveDown(Hero* hero, Alice& alice)
 {
 	//check for walls
 	Position pos = hero->getPos();
-	//map[pos.getRow()][pos.getCol()] = '.';
+	//map[pos.getRow()][pos.getCol()] = EMPTY_SPACE_CHAR;
 	hero->moveDown(size);
 	if (!canWalk(hero->getPos()))
 	{
@@ -412,9 +418,10 @@ void Board::moveDown(Hero* hero, Alice& alice)
 	if (hero->isAlice())
 	{
 		checkForWeapon(alice);
-		checkForHero(alice);
+		if (alice.getFreeMoves() <= 0)
+			checkForHero(alice);
 	}
-	map[pos.getRow()][pos.getCol()] = '.';
+	map[pos.getRow()][pos.getCol()] = EMPTY_SPACE_CHAR;
 	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
 	if (!hero->isAlice())
 	{
@@ -441,7 +448,7 @@ void Board::moveLeft(Hero* hero, Alice& alice)
 {
 	//check for walls
 	Position pos = hero->getPos();
-	//map[pos.getRow()][pos.getCol()] = '.';
+	//map[pos.getRow()][pos.getCol()] = EMPTY_SPACE_CHAR;
 	hero->moveLeft(size);
 	if (!canWalk(hero->getPos()))
 	{
@@ -464,10 +471,11 @@ void Board::moveLeft(Hero* hero, Alice& alice)
 	if (hero->isAlice())
 	{
 		checkForWeapon(alice);
-		checkForHero(alice);
+		if (alice.getFreeMoves() <= 0)
+			checkForHero(alice);
 	}
 
-	map[pos.getRow()][pos.getCol()] = '.';
+	map[pos.getRow()][pos.getCol()] = EMPTY_SPACE_CHAR;
 	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
 	if (!hero->isAlice())
 	{
@@ -494,7 +502,7 @@ void Board::moveRight(Hero* hero, Alice& alice)
 {
 	//check for walls
 	Position pos = hero->getPos();
-	//map[pos.getRow()][pos.getCol()] = '.';
+	//map[pos.getRow()][pos.getCol()] = EMPTY_SPACE_CHAR;
 	hero->moveRight(size);
 	if (!canWalk(hero->getPos()))
 	{
@@ -517,9 +525,10 @@ void Board::moveRight(Hero* hero, Alice& alice)
 	if (hero->isAlice())
 	{
 		checkForWeapon(alice);
-		checkForHero(alice);
+		if (alice.getFreeMoves() <= 0)
+			checkForHero(alice);
 	}
-	map[pos.getRow()][pos.getCol()] = '.';
+	map[pos.getRow()][pos.getCol()] = EMPTY_SPACE_CHAR;
 	addHeroOnMap(hero); //no matter if the move was done, the hero would be at the right spot and will override a dot
 	if (!hero->isAlice())
 	{
@@ -544,7 +553,7 @@ void Board::moveRight(Hero* hero, Alice& alice)
 
 bool Board::canWalk(Position pos)
 {
-	return (operator[](pos) != '#');
+	return (operator[](pos) != WALL_CHAR);
 }
 
 void Board::checkForWeapon(Alice& alice)
@@ -771,14 +780,15 @@ void Board::fight(Alice& alice, Hero* enemy)
 		if (enemy->getHp() <= 0)
 		{
 			std::cout << "You Won!" << std::endl;
-			map[enemy->getPos().getRow()][enemy->getPos().getCol()] = '.';
-
+			map[enemy->getPos().getRow()][enemy->getPos().getCol()] = EMPTY_SPACE_CHAR;
+			break; 
 		}
 		enemy->attack(alice);
 		enemy->castAbility(); 
 		if (alice.getHp() <= 0)
 		{
 			std::cout << "You DIED!" << std::endl;
+			break;
 		}
 	}
 		visualize();

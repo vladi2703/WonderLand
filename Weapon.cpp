@@ -64,10 +64,10 @@ void Weapon::setDamage(int value)
 
 
 //Teleport potion
-TeleportPotion::TeleportPotion(Position startingPos, Hero* owner, Position& toPort)
-	:Weapon(teleportPotionDamage, name, teleportPotionDescription, teleportSign, startingPos, owner), toPort(toPort)
+TeleportPotion::TeleportPotion(Position startingPos, Hero* owner)
+	:Weapon(teleportPotionDamage, name, teleportPotionDescription, teleportSign, startingPos, owner)
 {
-	ability = new Teleport(toPort, owner);
+	ability = new SkipNextMonster(owner);
 }
 Weapon* TeleportPotion::clone() const 
 {
@@ -114,13 +114,9 @@ Weapon* MagicFan::clone() const
 
 //Inbisible hat
 InvisibleHat::InvisibleHat(Position startPos, Hero* owner, Hero* enemy)
-	:Weapon(invisibleHatDamage, invisibleHatName, invisibleHatDescription, invisibleHatSign, startPos, owner), enemy(enemy)
+	:Weapon(invisibleHatDamage, invisibleHatName, invisibleHatDescription, invisibleHatSign, startPos, owner)
 {
-	ability = new SkipNextMonster(owner, enemy);
-}
-void InvisibleHat::setEnemy(Hero* enemy)
-{
-	this->enemy = enemy;
+	ability = new SkipNextMonster(owner);
 }
 Weapon* InvisibleHat::clone() const
 {

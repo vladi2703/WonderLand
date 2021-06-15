@@ -40,10 +40,9 @@ public:
 
 class TeleportPotion : public Weapon 
 {
-private:
-	Position toPort; //position we want to teleport the "owner" 
+
 public: 
-	TeleportPotion(Position startPos, Hero* owner, Position& toPort);
+	TeleportPotion(Position startPos, Hero* owner);
 	Weapon* clone() const override;
 };
  
@@ -71,11 +70,9 @@ public:
 
 class InvisibleHat : public Weapon
 {
-
-	Hero* enemy;
 public:
 	InvisibleHat(Position startPos, Hero* owner, Hero* enemy);
-	void setEnemy(Hero* enemy); 
+
 	Weapon* clone() const override;
 
 };

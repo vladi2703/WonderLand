@@ -71,18 +71,23 @@ int main()
 		}
 	}
 	//weapons
-	Rose* r1 = new Rose(positions[0][0], a);
+	Rose* r1 = new Rose(positions[5][7], a);
+	MagicFan* mf1 = new MagicFan(positions[5][5], a);
+
 	//enemies
 
 	CheshireCat* k1 = new CheshireCat(positions[2][2], a, positions[4][0]);
 	QueenOfHearts* q1 = new QueenOfHearts(positions[1][0]);
 
-	//board
+	//boards
 	Board map1(filename, true);
-	map1.addHero(k1);
 	maps.push_back(map1);
+	Board map2(filename);
+	maps.push_back(map2);
+
 	maps[0].setSize(size);
 	maps[0].addWeapon(r1);
+	maps[0].addWeapon(mf1);
 	maps[0].addHero(k1);
 	maps[0].addHero(q1);
 	maps[0].setEntrancePortal(positions[3][1]);
@@ -91,6 +96,7 @@ int main()
 	maps[0].buildBoard(*a);
 	//Map2 setting
 	//weapons
+	Weapon* r2 = new Rose(positions[4][7], a);
 	PotionDrinkMe* pot2 = new PotionDrinkMe(positions[3][2], a);
 	CookieEatMe* cet2 = new CookieEatMe(positions[6][8], a);
 	MagicFan* mf2 = new MagicFan(positions[5][5], a);
@@ -100,9 +106,8 @@ int main()
 
 
 
-	Board map2(filename); 
-	maps.push_back(map2);
 	maps[1].setSize(size);
+	maps[1].addWeapon(r2);
 	maps[1].addWeapon(pot2);
 	maps[1].addWeapon(cet2);
 	maps[1].addWeapon(mf2);
@@ -208,7 +213,7 @@ int main()
 			std::cout << "You command Alice again";
 
 		}
-		else if (GetAsyncKeyState(VK_BACK))
+		else if (GetAsyncKeyState(VK_HOME))
 		{
 			a->takeDamage(100); 
 		}
@@ -221,6 +226,7 @@ int main()
 	}
 	//free
 	delete a;
+	delete[] r1;
 	delete k1;
 	delete q1;
 	delete pot2;
