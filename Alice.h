@@ -20,9 +20,10 @@ public:
 	void collectWeapon(Weapon* newWeapon); 
 	void useWeapon(); 
 	void revertDamage(); 
+	void rebirth();
 
 	void castAbility() override;
-
+	
 
 	Hero* clone() const override;
 	bool isAlice() const override;

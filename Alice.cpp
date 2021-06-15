@@ -95,6 +95,10 @@ void Alice::revertDamage()
 {
 	this->setDamage(ALICE_BASE_DAMAGE);
 }
+void Alice::rebirth()
+{
+	resetHP(ALICE_BASE_HEALTH);
+}
 void Alice::castAbility() //yet doing nth
 { }
 Hero* Alice::clone() const

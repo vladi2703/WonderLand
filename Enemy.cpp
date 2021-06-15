@@ -45,11 +45,6 @@ void Enemy::castAbility()
 	}
 }
 
-void CheshireCat::castAbility()
-{
-	ability->execute(); 
-	takeDamage(getHp()); 
-}
 
 //Cat
 CheshireCat::CheshireCat(Position& startingPos, Hero* enemy, Position& toPortEnemy)
@@ -61,6 +56,12 @@ void CheshireCat::setToPortPosition(Position& newPos)
 {
 	toPortEnemy = newPos;
 }
+void CheshireCat::castAbility() 
+{
+	ability->execute();
+	takeDamage(getHp()); //kill 
+}
+
 //Queen
 
 QueenOfHearts::QueenOfHearts(Position& startingPos)

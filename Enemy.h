@@ -14,7 +14,7 @@ public:
 	Hero* clone() const override;
 	bool isAlice() const override;
 
-	void castAbility() override; 
+	 virtual void castAbility();
 };
 
 class CheshireCat : public Enemy

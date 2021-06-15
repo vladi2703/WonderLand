@@ -2,7 +2,7 @@
 #include "fstream"
 void Board::copyFrom(const Board& other)
 {
-	size = other.size; 
+	size = other.size;
 	map = new char* [size]; 
 	for (int i = 0; i < size; i++)
 	{
@@ -25,6 +25,7 @@ void Board::copyFrom(const Board& other)
 
 	entrancePortal = other.entrancePortal;
 	exitPortal = other.exitPortal;
+	setFilename(other.filename); 
 
 
 }
@@ -50,9 +51,10 @@ void Board::free()
 	freeWeapons.clear(); 
 }
 
-Board::Board()
+Board::Board(string filename, bool firstMap)
 	:size(0), map(nullptr), entrancePortal(Position()), exitPortal(Position())
 {
+	setFilename(filename, firstMap); 
 }
 
 Board::Board(const Board& other)
@@ -147,18 +149,21 @@ void Board::setSize(int newSize)
 	of_stream.close();
 }
 
-void Board::setFilename(string filename)
+void Board::setFilename(string filename, bool firstMap)
 {
 	this->filename = filename;
 	std::ofstream of_stream;
-	of_stream.open(filename);
+	if (firstMap)
+	{
+		of_stream.open(filename);
 	if (!of_stream.is_open())
 	{
 		throw std::invalid_argument("File not open!");
 	}
 
-	of_stream << " "; //clear file
-	of_stream.close();
+		of_stream << " "; //clear file
+		of_stream.close();
+	}
 }
 
 Position Board::getEntrancePortal() const
@@ -297,6 +302,15 @@ void Board::setAliceToBegin(Alice& alice)
 
 	of_stream << "Alice is on the entrance portal" << '\n';
 	of_stream.close();
+}
+
+void Board::reviveAllEnemies()
+{
+	int countOfEnemies = heroes.size();
+	for (int i = 0; i < countOfEnemies; i++)
+	{
+		heroes[i]->resetHP(100); //later max hp 
+	}
 }
 
 void Board::moveUp(Hero* hero, Alice& alice)
@@ -589,6 +603,11 @@ bool Board::onExitPortal(Alice& alice)
 	return (alice.getPos() == exitPortal);
 }
 
+bool Board::checkAliceIsAlive(Alice& alice)
+{
+	return (alice.getHp() > 0);
+}
+
 void Board::removeHero(const Hero& killedHero)
 {
 	//primitive Method - overlaping
@@ -749,17 +768,34 @@ void Board::fight(Alice& alice, Hero* enemy)
 		} while (flag != 'y' && flag != 'N');
 		alice.attack(*enemy); 
 
+		if (enemy->getHp() <= 0)
+		{
+			std::cout << "You Won!" << std::endl;
+			map[enemy->getPos().getRow()][enemy->getPos().getCol()] = '.';
+
+		}
 		enemy->attack(alice);
 		enemy->castAbility(); 
 		if (alice.getHp() <= 0)
 		{
 			std::cout << "You DIED!" << std::endl;
 		}
-		else if (enemy->getHp() <= 0)
-		{
-			std::cout << "You Won!" << std::endl;
-		}
 	}
 		visualize();
 }
+
+Board* Board::clone() const
+{
+	Board* copy = new Board(*this);
+	return copy;
+}
+
+void Board::writeToFile(string input, string filename)
+{
+	std::ofstream of_stream;
+		of_stream.open(filename, std::ios::app);
+		of_stream << input; //clear file
+		of_stream.close();
+}
+
 

@@ -22,7 +22,7 @@ private:
 	void copyFrom(const Board& other);
 	void free(); 
 public:
-	Board();
+	Board(string filename, bool firstMap = false);
 	Board(const Board& other); 
 	Board& operator= (const Board& other); 
 	~Board();
@@ -34,7 +34,7 @@ public:
 	void setEntrancePortal(Position& toSet);
 	void setExitPortal(Position& toSet); 
 	void setSize(int newSize);
-	void setFilename(string filename); 
+	void setFilename(string filename, bool firstMap = false);
 
 	Position getEntrancePortal() const; 
 	Position getExitPortal() const;
@@ -50,6 +50,7 @@ public:
 	void buildBoard(Alice& alice);
 	void visualize() const; 
 	void setAliceToBegin(Alice& alice); 
+	void reviveAllEnemies();
 
 	void moveUp(Hero* hero, Alice& alice); 
 	void moveDown(Hero* hero, Alice& alice);
@@ -61,6 +62,7 @@ public:
 	void checkForWeapon(Alice& alice);
 	void checkForHero(Alice& alice);
 	bool onExitPortal(Alice& alice);
+	bool checkAliceIsAlive(Alice& alice);
 
 	void removeHero(const Hero& killedHero); 
 	void removeWeapon(const Weapon& collectedWeapon);
@@ -72,6 +74,9 @@ public:
 	Hero* choseHero(); 
 
 	void fight(Alice& alice, Hero* enemy); 
+
+	Board* clone() const; 
+	static void writeToFile(string input, string filename);
 
 
 };

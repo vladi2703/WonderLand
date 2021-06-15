@@ -12,10 +12,7 @@ class EmptySpace : public Action
 {
 	void execute() const override;
 };
-//class Move : public Action //TODO
-//{
-//	void execute() const override;
-//};
+
 class TakeARose : public Action
 {
 private:
@@ -52,7 +49,7 @@ private:
 public:
 	Teleport(Position& toPort, Hero* champion);
 	void execute() const override;
-}; //TODO
+}; 
 
 class Attack : public Action
 {

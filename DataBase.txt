@@ -1,7 +1,61 @@
- Size set: 10
-Hero Toss a rose added 
+ Hero Caeshire Cat added on position X:2 Y:2
+Size set: 10
+Weapon  Toss a rose added 
 Hero Caeshire Cat added on position X:2 Y:2
-Hero Crazy hatter added on position X:6 Y:4
+Hero Queen of hearts added on position X:0 Y:1
 Entrance portal added on position X:1 Y:3
 Exit portal added on position X:7 Y:4
 Alice is on the entrance portal
+Size set: 10
+Weapon  Potion - Drink me  added 
+Weapon  Cookie - eat me  added 
+Weapon  Magic Fan added 
+Hero Crazy hatter added on position X:6 Y:4
+Hero White rabbit added on position X:0 Y:7
+Entrance portal added on position X:9 Y:9
+Exit portal added on position X:1 Y:1
+Alice moved down to position X:1 Y:4
+Alice moved down to position X:1 Y:5
+Alice moved down to position X:1 Y:6
+Alice moved right to position X:2 Y:6
+Alice moved right to position X:3 Y:6
+Alice moved right to position X:4 Y:6
+Alice moved right to position X:5 Y:6
+Alice moved up to position X:5 Y:5
+Alice moved up to position X:5 Y:4
+Alice moved up to position X:5 Y:3
+Alice moved right to position X:6 Y:3
+Alice moved right to position X:7 Y:3
+Alice moved down to position X:7 Y:4
+Map2 
+Alice is on the entrance portal
+Alice moved left to position X:8 Y:9
+Alice moved left to position X:7 Y:9
+Alice moved left to position X:6 Y:9
+Alice moved right to position X:7 Y:9
+Alice moved right to position X:8 Y:9
+Alice is on the entrance portal
+Alice moved up to position X:9 Y:8
+Alice moved left to position X:8 Y:8
+Alice moved up to position X:8 Y:7
+Alice moved left to position X:7 Y:7
+Alice moved left to position X:6 Y:7
+Alice moved right to position X:7 Y:7
+Alice moved up to position X:7 Y:6
+Alice moved up to position X:7 Y:5
+Alice moved right to position X:8 Y:5
+Alice moved up to position X:8 Y:4
+Alice moved up to position X:8 Y:3
+Alice moved up to position X:8 Y:2
+Alice moved left to position X:7 Y:2
+Alice moved down to position X:7 Y:3
+Alice moved left to position X:6 Y:3
+Alice moved left to position X:5 Y:3
+Alice moved up to position X:5 Y:2
+Alice moved up to position X:5 Y:1
+Alice moved up to position X:5 Y:0
+Alice moved left to position X:4 Y:0
+Alice moved left to position X:3 Y:0
+Alice moved down to position X:3 Y:1
+Alice moved left to position X:2 Y:1
+Alice moved left to position X:1 Y:1
